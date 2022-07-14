@@ -1,24 +1,22 @@
-import logo from './logo.svg';
+
 import './App.css';
+import Header from './components/Header';
+import TodoList from './components/TodoList';
+import Footer from './components/Footer'
+import {useState} from 'react'
 
 function App() {
+  const initStoreage = JSON.parse(localStorage.getItem('TODOS')) || []
+  console.log(initStoreage);
+  const [input , setTodo]=useState('')
+  const [addTodo, setAddtodo] = useState([]);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <section className="todoapp">
+      <Header input={input} setTodo={setTodo}
+       addTodo={addTodo} setAddtodo={setAddtodo} />
+      <TodoList addTodo={addTodo} />
+      <Footer />
+    </section>
   );
 }
 
